@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QiRo</title>
-    <link rel="stylesheet" href="style.css"> <!-- style.css 파일 포함 -->
-    <link rel="stylesheet" href="stock.css"> <!-- 주식 CSS 파일 포함 -->
-    <link rel="stylesheet" href="weather.css"> <!-- 날씨 CSS 파일 포함 -->
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stock.css">
+    <link rel="stylesheet" href="weather.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
@@ -14,22 +15,25 @@
 </head>
 <body>
     <header id="header">
-        <h1><a href="index.html">QiRo</a></h1>
+        <img class="logo" src="img/qiro.png" onclick="location.href='index.html'">
+        
         <nav>
-            <ul>
+            <ul class="right">
                 <li><a href="blog.html">블로그</a></li>
-                <li><a href="message_board.html">게시판</a></li>
+                <li><a href="login.html">로그인</a></li>
             </ul>
         </nav>
-        <div class="search-bar">
-            <form action="https://www.google.com/search" method="get">
-                <input type="text" name="q" placeholder="검색어를 입력하세요">
-                <button type="submit">검색</button>
+    
+        <div class="chat-search">
+            <form id="search-form" action="https://www.google.com/search" method="get">
+                <div class="input-wrapper">
+                    <input type="text" placeholder="검색어를 입력하시오." name="q" id="search-input">
+                </div>
             </form>
-        </div>
+        </div>       
     </header>
     
-    <main>
+    <main class="maindex">
         <div class="content">
             <div class="box" id="weather-box">
                 <h3>날씨 검색</h3>
@@ -37,24 +41,13 @@
                 <button id="weather-search-button">검색</button>
                 <button id="current-weather-button">현위치</button>
                 <div id="weather-info">
-                    <!-- 도시명 -->
                     <h4 id="city-name"></h4>
-                    
-                    <!-- 날씨 아이콘 -->
                     <div id="weather-image">
                         <img id="weather-icon" src="" alt="날씨 아이콘" />
                     </div>
-                    
-                    <!-- 현재 온도 -->
                     <h2 id="temperature"></h2>
-                    
-                    <!-- 날씨 상태 설명 -->
                     <p id="weather-description"></p>
-                    
-                    <!-- 날짜 (월, 일, 요일) -->
                     <p id="date"></p>
-                    
-                    <!-- 현재 위치 -->
                     <p id="current-location"></p>
                 </div>
             </div>
@@ -63,7 +56,7 @@
                 <h3>지도</h3>
                 <input id="search-box" type="text" placeholder="검색할 지역 입력">
                 <button id="locateButton">현위치</button>
-                <div id="map"></div> <!-- 스타일을 CSS로 이동 -->
+                <div id="map"></div>
             </div>
             
             <div class="box" id="stock-box">
@@ -78,33 +71,39 @@
                     </div>
                     <div class="stock-stats">
                         <div class="stat-item">
-                            <span>시가</span> <!-- Open -->
+                            <span>시가</span>
                             <span id="open-price">112.68</span>
                         </div>
                         <div class="stat-item">
-                            <span>전일 종가</span> <!-- Prev Close -->
+                            <span>전일 종가</span>
                             <span id="prev-close">110.08</span>
                         </div>
                         <div class="stat-item">
-                            <span>거래량</span> <!-- Volume -->
+                            <span>거래량</span>
                             <span id="volume">183,055,376</span>
                         </div>
                         <div class="stat-item">
-                            <span>시가총액</span> <!-- Market Cap -->
+                            <span>시가총액</span>
                             <span id="market-cap">1.883T</span>
                         </div>
                         <div class="stat-item">
-                            <span>일일 범위</span> <!-- Day Range -->
+                            <span>일일 범위</span>
                             <span id="day-range">109.16 - 112.86</span>
                         </div>
                         <div class="stat-item">
-                            <span>52주 범위</span> <!-- 52 Week Range -->
+                            <span>52주 범위</span>
                             <span id="52-week-range">53.15 - 137.98</span>
                         </div>
                     </div>
                 </div>
-                
                 <canvas id="stockChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="box" id="news-box">
+            <h3>뉴스</h3>
+            <div id="news-container">
+                <!-- 뉴스 기사가 여기에 표시됩니다. -->
             </div>
         </div>
     </main>
@@ -113,29 +112,10 @@
         <p>이 사이트는 대학교 프로젝트 및 과제용으로 수익창출을 하지 않습니다.</p>
         <p>API 제공: <a href="https://twelvedata.com" target="_blank">twelvedata</a>, <a href="https://openweathermap.org" target="_blank">OpenWeatherMap</a>, <a href="https://maps.googleapis.com" target="_blank">Google Maps</a></p>
     </footer>
-
-    <!-- JavaScript 코드 -->
-    <script>
-        window.onload = function() {
-            const header = document.getElementById("header");
-            const main = document.querySelector("main");
-            const headerHeight = header.offsetHeight; // 헤더의 높이를 가져옴
-            main.style.marginTop = (headerHeight + 25) + "px"; // 바디의 여백을 헤더 높이에 맞춤 (10px 추가)
-        };
-
-        window.onscroll = function() {
-            const header = document.getElementById("header");
-            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-                header.style.top = "-100px"; // 헤더를 숨김
-            } else {
-                header.style.top = "0"; // 헤더를 보임
-            }
-        };
-    </script> 
-
-    <!-- 다른 JavaScript 파일 포함 -->
+    <script src="search.js"></script>
     <script src="weather.js"></script>
     <script src="map.js"></script>
     <script src="stock.js"></script>
+    <script src="news.js"></script> <!-- news.js 파일 포함 -->
 </body>
 </html>

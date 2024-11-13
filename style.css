@@ -4,7 +4,9 @@
 * {
     box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 계산 */
 }
-
+.maindex{
+    margin-top: 250px;
+}
 body {
     font-family: 'Roboto', sans-serif; /* 더 현대적인 폰트 */
     background-color: #e6f7ff; /* 신선한 느낌을 위한 밝은 배경 */
@@ -60,36 +62,35 @@ nav a:hover {
     text-decoration: underline;
 }
 
+.chat-search {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    margin-left: 20px; /* 블로그와 로그인 버튼 사이의 간격 */
+}
+
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.chat-search input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
 .search-bar {
     display: flex;
-    justify-content: center;
-    margin: 10px 0; /* 여백 조정 */
-}
-
-.search-bar input[type="text"] {
-    width: 100%; /* 모바일에서 너비를 100%로 설정 */
-    max-width: 250px; /* 최대 너비 설정 */
-    padding: 12px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-right: 10px;
-}
-
-.search-bar button {
-    padding: 12px 20px;
-    font-size: 1rem;
-    background-color: #0056b3; /* 대비를 위한 약간 어두운 색상 */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.search-bar button:hover {
-    background-color: #004494;
+    justify-content: flex-start;  /* 왼쪽 정렬 */
+    align-items: center;          /* 수직 정렬 */
+    position: absolute;
+    top: 70px; /* 로고 아래에 배치 */
+    right: 0; /* 오른쪽 끝으로 배치 */
+    width: auto; /* 너비는 자동으로 맞춤 */
+    padding: 10px;
 }
 
 .content {
@@ -159,4 +160,53 @@ footer p {
     .search-bar input[type="text"] {
         max-width: 100%; /* 모바일에서 최대 너비를 100%로 설정 */
     }
+}
+
+#news-container {
+    display: flex; /* 가로 방향으로 배치 */
+    flex-wrap: wrap; /* 줄 바꿈 허용 */
+    gap: 20px; /* 아이템 간의 간격 */
+}
+
+.news-article {
+    flex: 1 1 calc(33.333% - 20px); /* 3개 열로 배치하고 여백 고려 */
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.article-image img {
+    width: 100%; /* 이미지가 부모 요소의 너비에 맞게 조정됨 */
+    height: auto; /* 비율에 맞게 높이 조정 */
+    max-height: 150px; /* 이미지의 최대 높이 설정 */
+    object-fit: cover; /* 이미지 비율 유지하며 잘리도록 설정 */
+}
+
+.news-article h4 {
+    margin: 10px; /* 제목과 이미지 사이의 여백 */
+}
+
+.news-article p {
+    margin: 0 10px 10px; /* 설명과 제목 사이의 여백 */
+}
+
+
+.logo{
+    width: 100px;
+    height: auto;
+    cursor: pointer;         /* 커서 포인터로 변경 */
+    margin-right: 10px; 
+}
+.right {         /*오른쪽 끝에 고정하고 싶을때 사용*/
+    margin-top: -25px; /*위 아래 조정*/
+    position: fixed;  /* 화면에 고정 */
+    right: 0;          /* 화면의 오른쪽 끝에 배치 */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+ 
+    cursor: pointer;
+
 }

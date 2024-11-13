@@ -9,7 +9,11 @@
 </head>
 <body>
     <header>
-        <h1 onclick="location.href='blog.html'" style="cursor: pointer;">블로그</h1> <!-- 블로그 클릭 시 이동 -->
+        <div class="header-content">
+            <img class="logo" src="img/qiro2.png" onclick="location.href='index.html'" >
+            <img class="logo" src="img/blog.png" onclick="location.href='blog.html'" >
+        </div>
+        
     </header>
     
     <main class="main">
@@ -34,11 +38,11 @@
                 <div>
                     <label for="image" class="custom-file-upload">이미지 업로드</label>
                     <input type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)">
-
                 </div>
-                <img id="image-preview" src="" alt="이미지 미리보기" style="display: none; max-width: 100%; margin-top: 10px;">
+                <img id="image-preview" src="" alt="이미지 미리보기" style="display: none; margin-top: 10px;">
                 <button type="submit">작성하기</button>
             </form>
+            
         </div>
     </main>
     
@@ -46,7 +50,7 @@
         <p>출처: <a href="https://openweathermap.org" target="_blank">OpenWeatherMap</a></p>
         <p>API 제공: <a href="https://newsapi.org" target="_blank">NewsAPI</a></p>
     </footer>
-    <script src="blogwrite.js"></script>
+    
+    <script src="blog.js"></script>
 </body>
-
 </html>

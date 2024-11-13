@@ -43,21 +43,22 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('image-preview').style.display = 'none';
         });
 
-// 이미지 업로드 및 미리보기
-function previewImage(event) {
-    const reader = new FileReader();
-    const imagePreview = document.getElementById('image-preview');
-    
-    reader.onload = function() {
-        imagePreview.src = reader.result;  // 이미지를 미리보기
-        imagePreview.style.display = 'block';  // 미리보기 이미지 보이게 설정
-    };
-    
-    if (event.target.files && event.target.files[0]) {
-        reader.readAsDataURL(event.target.files[0]);  // 파일 읽기
-    }
-}
-
+        // 이미지 업로드 및 미리보기
+        document.getElementById('image').addEventListener('change', function(event) {
+            const imagePreview = document.getElementById('image-preview');
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.src = '';
+                imagePreview.style.display = 'none';
+            }
+        });
 
     } else {
         // blog.html에서 글과 공지사항을 불러올 때
@@ -97,7 +98,7 @@ function displayPosts() {
     });
 }
 
-// 공지사항 목록 표시 (이미지와 댓글 추가)
+// 공지사항 목록 표시
 function displayAnnouncements() {
     const announcements = JSON.parse(sessionStorage.getItem('announcements')) || [];
     const announcementList = document.getElementById('announcement-list');

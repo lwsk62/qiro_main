@@ -119,23 +119,12 @@ button:hover {
 }
 /* 기존 CSS는 그대로 유지 */
 
-#image-preview-container {
-    margin-top: 10px;
-    text-align: center; /* 미리보기를 가운데 정렬 */
-}
-
-/* 기존 스타일을 유지하면서 이미지 크기 변경 */
 #image-preview {
-    width: 10%;  /* 이미지 크기를 10%로 제한 */
-    height: auto; /* 비율에 맞게 높이 자동 조정 */
-    border-radius: 8px; /* 이미지 둥글게 처리 */
+    width: 100px;  /* 원하는 너비로 설정 */
+    height: auto;  /* 비율을 유지하면서 높이 자동 조정 */
+    display: none;  /* 기본적으로 숨김 */
     margin-top: 10px;
-    object-fit: contain; /* 이미지가 왜곡되지 않도록 */
-    display: block; /* 이미지가 정상적으로 표시되게 함 */
-    margin-left: auto; /* 가운데 정렬 */
-    margin-right: auto; /* 가운데 정렬 */
 }
-
 /* 기존 스타일 유지 */
 .blogwrite-container {
     padding: 20px;
